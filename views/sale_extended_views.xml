@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="sale_list_tree1" model="ir.ui.view">
+        <field name="name">sale.list.tree</field>
+        <field name="model">sale.list</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                 <field name="customer_name"/>
+                 <field name="create_date"/>
+                 <field name="status"/>
+                 <field name="amount_total"/>
+                 <field name="discount"/>
+                  <field name="sub_1"/>
+                <field name="sub_2"/>
+                <field name="sub_3"/>
+                <field name="total_sub"/>
+               
+               
+                 
+                    
+
+            </tree>
+        </field>
+    </record>
+
+<record id="sale_list_form" model="ir.ui.view">
+            <field name="name">sale.list.form</field>
+            <field name="model">sale.list</field>
+            <field name="arch" type="xml">
+                <form>
+                <header>
+                    <field name="status" widget="statusbar"/>
+                    
+                    <button name="order_cancel" type="object" string="Cancel"/>
+                    <button name="order_draft" type="object" string="Draft"/>
+                    <button name="order_conform" type="object" string="Conform"/>
+                    <button name="order_done" type="object" string="Done"/>
+                    <button name="create_invoice" type="object" string="Create Invoice"/>
+
+
+                    </header>
+
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+
+
+
+
+            <group>
+                <group>
+
+                
+               
+                <field name="customer_name"/>
+                </group>
+                <group>
+                <field name="create_date"/>
+                <field name="status"/>
+                <field name="amount_total"/>
+                <field name="discount"/>
+                <field name="discount_total"/>
+                <field name="sub_1"/>
+                <field name="sub_2"/>
+                <field name="sub_3"/>
+                <field name="total_sub"/>
+                 </group>
+            </group>
+              <notebook>
+                <page string="Order Lines" name="order_lines">
+                    <field name="order_line">
+                        <tree editable="bottom">
+                            <field name="product_id"/>
+                            <field name="price"/>
+                            <field name="quntity"/>
+
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+         </form>
+     </field>
+ </record>
+ <record id="sale_list_kanban" model="ir.ui.view">
+        <field name="name">sale.list.kanban</field>
+        <field name="model">sale.list</field>
+        <field name="arch" type="xml">
+        <kanban >
+            <templates>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_card">
+                        <field name="name"/>
+                        <field name="customer_name"/>
+                        <field name="create_date"/>
+                        <field name="status"/>
+                        
+                       
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+
+ <record id="view_sales_list_search" model="ir.ui.view">
+        <field name="name">sale.list.select</field>
+        <field name="model">sale.list</field>
+        <field name="priority" eval="15"/>
+        <field name="arch" type="xml">
+
+
+
+ <search string="Search Sales Order">
+                
+                <field name="name" string=" Number"
+                    filter_domain="[('name', 'ilike', self)]"/>
+                <field name="customer_name" string="Customer"
+                    filter_domain="[('customer_name', 'ilike', self)]"/>
+                <field name="create_date" string="Date"
+                filter_domain="[('create_date', 'ilike', self)]"/>
+               
+                <filter string="Draft Order" domain="[('status', '=', 'draft')]" name= "orderdraft"/>
+
+                <filter string="Conform Order" domain="[('status', '=', 'conform')]" name="order_confirm"/>
+                <filter string="Done Order" domain="[('status', '=', 'done')]" name=" 
+                    oder_done"/>
+
+
+                
+                <group expand="0" string="Group By">
+                    <filter string="Number" name="name" domain="[]" context="{'group_by': 'name'}"/>
+                    <filter name="customer" string="Customer" domain="[]" context="{'group_by': 'customer_name'}"/>
+                    <filter string="Date" name="order_month" domain="[]" context="{'group_by': 'create_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+<record id="action_sale_list" model="ir.actions.act_window">
+        <field name="name">Sale Plans</field>
+        <field name="res_model">sale.list</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{'search_default_order_confirm': 1}</field>
+
+    </record>
+
+       
+
+
+<record id="product_details_tree1" model="ir.ui.view">
+        <field name="name">product.details.tree</field>
+        <field name="model">product.details</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <tree>
+                 <field name="name"/>
+                  <field name="price"/>
+                    
+
+            </tree>
+        </field>
+    </record>
+
+<record id="product_details_form" model="ir.ui.view">
+            <field name="name">product.details.form</field>
+            <field name="model">product.details</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                <field name="name"/>
+                 <field name="price"/>
+             
+                 
+                 
+             </group>
+                    
+                </form>
+            </field>
+        </record>
+
+<record id="action_product_details" model="ir.actions.act_window">
+        <field name="name">Product Plans</field>
+        <field name="res_model">product.details</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+
+     
+
+
+
+
+<record id="customer_details_tree1" model="ir.ui.view">
+        <field name="name">customer.details.tree</field>
+        <field name="model">customer.details</field>
+        <field name="priority">1000</field>
+        <field name="arch" type="xml">
+            <tree>
+                 <field name="name"/>
+                 <field name="address"/>
+                 <field name="contect_no"/>
+                 
+                    
+
+            </tree>
+        </field>
+    </record>
+
+<record id="customer_details_form" model="ir.ui.view">
+            <field name="name">customer.details.form</field>
+            <field name="model">customer.details</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                <field name="name"/>
+                <field name="address"/>
+                <field name="contect_no"/>
+                
+             
+                 
+                 
+             </group>
+                    
+                </form>
+            </field>
+        </record>
+
+<record id="action_customer_details" model="ir.actions.act_window">
+        <field name="name">Customer Plans</field>
+        <field name="res_model">customer.details</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+</odoo>
+
+

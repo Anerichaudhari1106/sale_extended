@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- <menuitem id="TSET"
+        name="Tser"
+        parent="bookacount_menu_root_4"
+        action="village_action_village_master"
+        sequence="2"/> -->
+
+
+<menuitem id="menu_action_sale_list_parent"
+        name="saleacount"
+        />
+
+
+
+
+<menuitem id="menu_action_orders_parent"
+        name="Orders"
+        parent="menu_action_sale_list_parent"
+        sequence="1"/>
+
+<menuitem id="menu_action_sale_list"
+        name="Order"
+        parent="menu_action_orders_parent"
+        action="action_sale_list"
+        sequence="1"/>
+
+
+<menuitem id="menu_action_customer_details"
+        name="customers"
+        parent="menu_action_orders_parent"
+        action="action_customer_details"
+        sequence="2"/>
+<menuitem id="menu_action_product_details"
+        name="product"
+        parent="menu_action_sale_list_parent"
+        sequence="2"/>
+<menuitem id="menu_action_product_details_1"
+        name="products"
+        parent="menu_action_product_details"
+        action="action_product_details"
+        sequence="3"/>
+<menuitem id="menu_action_account_invoice"
+        name="invoice"
+        parent="menu_action_sale_list_parent"
+        action="action_account_invoice"/>
+
+
+
+
+
+
+
+</odoo>
+
+

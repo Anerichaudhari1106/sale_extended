@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View for Create Invoice -->
+    <record id="view_create_invoice_form111111" model="ir.ui.view">
+        <field name="name">create.invoice.form</field>
+        <field name="model">create.invoice</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <!-- Payment Record Field -->
+                    <field name="payment_record" class="oe_inline"
+                        widget="radio"
+                        invisible="context.get('count', 0) &gt; 1"/>
+                </group>
+
+                <!-- Footer Section for Buttons -->
+                <footer>
+
+                    <button string="Create Invoice" type="object" name="confirm_action" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to Open the Form -->
+    <record id="action_view_create_invoice1111111" model="ir.actions.act_window">
+        <field name="name">Create Invoices111111</field>
+        <field name="res_model">create.invoice</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
