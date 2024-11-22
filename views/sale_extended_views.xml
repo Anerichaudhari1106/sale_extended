@@ -11,6 +11,7 @@
                  <field name="customer_name"/>
                  <field name="create_date"/>
                  <field name="status"/>
+                <field name="client_order_ref"/>
                  <field name="amount_total"/>
                  <field name="discount"/>
                   <field name="sub_1"/>
@@ -60,6 +61,7 @@
                 <group>
                 <field name="create_date"/>
                 <field name="status"/>
+                <field name="client_order_ref"/>
                 <field name="amount_total"/>
                 <field name="discount"/>
                 <field name="discount_total"/>

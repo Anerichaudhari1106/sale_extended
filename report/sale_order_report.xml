@@ -1,23 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-   <template id="report_order">
-       <t t-call="web.html_container">
-           <t t-foreach="docs" t-as="o">
-               <t t-call="web.external_layout">
-                   <div class="page">
-                       <div class="oe_structure"/>
-
-                   <center><h2>Order Report</h2></center>
-                       <br></br>
+    <template id="report_order_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <!-- Header Section -->
+                        <div class="oe_structure"/>
+                        <h2 style="text-align: center;">Order Report</h2>
+                        <br/>
+                         <br></br>
                        <p>
-                         Name :  <span t-field="o.name"/>
-                           <br></br>
-                           customer : <span t-field="o.customer_name"/>
+                            Name :  <span t-field="o.name"/>
+                           <p><strong>Order Date:</strong> <span t-field="o.create_date"/></p>
                        </p>
-                   </div>
-               </t>
-           </t>
 
-       </t>
-   </template>
+                        <!-- Order Information Section -->
+<!--                        <p><strong>Order Name:</strong> <span t-field="o.order"/></p>-->
+
+
+
+                        <!-- Customer Details Section -->
+                        <div style="text-align: right; border: 1px solid #ccc; padding: 10px; margin: 20px 0;">
+                            <h4>Customer Details:</h4>
+                            <p><strong>Customer Name:</strong> <span t-field="o.customer_name.name"/></p>
+                            <p><strong>Customer Address:</strong> <span t-field="o.customer_name.address"/></p>
+                            <p><strong>Phone:</strong> <span t-field="o.customer_name.contect_no"/></p>
+                        </div>
+
+                        <!-- Order Lines Section -->
+                        <h4>Order Lines:</h4>
+                        <table class="table table-sm table-bordered" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background-color: #f0f0f0;">
+                                    <th style="text-align: left; padding: 5px;">Product</th>
+                                    <th style="text-align: right; padding: 5px;">Quantity</th>
+                                    <th style="text-align: right; padding: 5px;">Unit Price</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.order_line" t-as="line">
+                                    <tr>
+                                        <td style="padding: 5px;"><span t-field="line.product_id.name"/></td>
+                                        <td style="text-align: right; padding: 5px;"><span t-field="line.quntity"/></td>
+                                        <td style="text-align: right; padding: 5px;"><span t-field="line.price"/></td>
+<!--                                        <td style="text-align: right; padding: 5px;"><span t-field="line.total_sub"/></td>-->
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+
+                        <!-- Order Total Section -->
+                        <h4 style="text-align: right; margin-top: 20px;">Total:
+                            <span t-field="o.amount_total"/>
+<!--                            <span t-field="o.currency_id.symbol" t-options='{"widget": "float", "precision": o.currency_id.decimal_places}'/>-->
+                        </h4>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
 </odoo>
+

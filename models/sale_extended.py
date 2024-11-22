@@ -20,6 +20,9 @@ class SaleList(models.Model):
             ('cancel',"cancel")
          ],
          string="Status",default='draft')
+    client_order_ref = fields.Char(string="Customer Reference", copy=False)
+
+
 
     amount_total = fields.Float(string="Total")
     discount = fields.Float(string = "Discount")
@@ -133,7 +136,7 @@ class Customers(models.Model):
 
     name = fields.Char(string = "Customer Name")
     address = fields.Text(string = "Address")  
-    contect_no = fields.Integer(string = "Mobile No.")
+    contect_no = fields.Char(string = "Mobile No.")
 
 class InvoiceExtended(models.Model):
     _name = 'account.invoice'
